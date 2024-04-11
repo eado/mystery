@@ -22,7 +22,7 @@ This will:
   to access. 
   - `clk`: basics of connecting
   - `rfc`: finding the path
-  - `goserve`: serving for the first time
+  - `roundtrip`: serving for the first time
 - Create a progress server to track players' inflitration. 
   - Each target sends a message to the progress server whenever they're accessed
     by a certain IP. 
