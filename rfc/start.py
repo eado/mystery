@@ -5,6 +5,8 @@ Content-Type: text/plain
 Thanks for getting my notes to my
 house in time. I'll be doing the requesting now.
 Make sure to serve me well...use this answer once more. 
+
+Hint: Create a server that listens on any address at port 6825.
 """
 ERR404 = b"""
 HTTP/1.0 404 Not Found
