@@ -12,10 +12,10 @@ RUN mkdir -p /$USER \
     && mkdir -p /run/openrc \
     && touch /run/openrc/softlevel \
     && echo -e "How exciting! Someone found my server! Good luck..." > /etc/motd \
-    && apk add --update bind-tools
+    && apk add --update bind-tools \
+    && rm /usr/bin/nc
 
 COPY socket /$USER
 COPY socket.c /$USER
 
-ENTRYPOINT ["sh", "-c", "rc-status; rc-service sshd start; cat"]
-
+CMD ["sh", "-c", "rc-status; rc-service sshd start; cat"]

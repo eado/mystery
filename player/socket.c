@@ -1,7 +1,5 @@
-// NOTE: Students are allowed to copy code from this file.
-// However, this program is supposed to be an interpreter demo, which has a very different structure from
-// a normal network application. Therefore, we strongly recommend NOT to copy this file.
-// Instead, students can copy the code printed in the command line freely.
+/* Credits: Xinyu Ma */
+
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -145,7 +143,7 @@ int main(){
       printf("Client IP address: %s port: %d\n", ip_str, ntohs(addr.sin_port));
       printf("Now use socket %d to communicate with the client\n", new_sock);
     } else if(strncmp(cmd, "send", 4) == 0) {
-      if(sscanf(cmd, "send %d %s", &sock, buf) != 2){
+      if(sscanf(cmd, "send %d %[^\n]", &sock, buf) != 2){
         printf("Usage: send SOCKET STRING\n");
         continue;
       }
