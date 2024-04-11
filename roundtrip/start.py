@@ -1,5 +1,7 @@
 REQUEST = b"""
-UPLOAD /roundtrip PTHT/1.0||While there are no clients for PTHT, there are
+POST /roundtrip HTTP/1.0
+
+While there are no clients for PTHT, there are
 clients for HTTP--an odd protocol that never really took off. 
 
 I decided to give it a try and create an HTML website for a recent project of 
@@ -23,16 +25,19 @@ connections?)
 Add these two answers together and respond with that status code (and its
 message...look it up!) Feel free to put whatever you want in the body.
 """
-RESPBAD = b"UPLOAD /thatsnotright PTHT/1.0"
-RESPGOOD = b"UPLOAD /youdidit PTHT/1.0|Content-Type: FLAG||geneblock{tH3_H0lY_gR4iL_iS_tH3_fRi3NdS_w3_m4De_4L0Ng_tHe_w4y}"
+RESPBAD = b"POST /thatsnotright HTTP/1.0"
+RESPGOOD = b"""
+POST /youdidit HTTP/1.0
 
-RESPMATCH = "PTHT/1.0 418 I'm a teapot\\s*($|\\|.*)$"
+geneblock{tH3_H0lY_gR4iL_iS_tH3_fRi3NdS_w3_m4De_4L0Ng_tHe_w4y}"""
+
+RESPMATCH = "HTTP/1.0 418 I'm a teapot.*$"
 
 HOST = "0.0.0.0"
 PORT = 6825
 PROGRESS = 30
 
-NUMSERVERS = 10
+NUMSERVERS = 1
 
 from http.client import HTTPConnection
 from socket import socket, AF_INET, SOCK_STREAM
