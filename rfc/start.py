@@ -49,23 +49,28 @@ PROGRESS = 20
 from http.client import HTTPConnection
 from socket import socket, AF_INET, SOCK_STREAM
 from re import match
+from threading import Thread
+
+def handle_client(conn, addr):
+    with conn:
+        print(f"Connected by {addr}")
+        req = conn.recv(1024).decode()
+        print(req)
+        if not match(PANY, req):
+            conn.send(ERR400)
+        elif not match(PEXACT, req):
+            conn.send(ERR404)
+        else:
+            httpconn = HTTPConnection("progress", 8081)
+            httpconn.request("GET", "/" + addr[0] + "/" + str(PROGRESS))
+            httpconn.close()
+            conn.send(DATA)
+        conn.close()
 
 with socket(AF_INET, SOCK_STREAM) as s:
     s.bind((HOST, PORT))
     s.listen()
     while True:
         conn, addr = s.accept()
-        with conn:
-            print(f"Connected by {addr}")
-            req = conn.recv(1024).decode()
-            print(req)
-            if not match(PANY, req):
-                conn.send(ERR400)
-            elif not match(PEXACT, req):
-                conn.send(ERR404)
-            else:
-                httpconn = HTTPConnection("progress", 8081)
-                httpconn.request("GET", "/" + addr[0] + "/" + str(PROGRESS))
-                httpconn.close()
-                conn.send(DATA)
-            conn.close()
+        t = Thread(target=handle_client, args=(conn, addr))
+        t.start()
