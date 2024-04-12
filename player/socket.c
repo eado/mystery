@@ -40,6 +40,7 @@ int main(){
     } else if(strncmp(cmd, "connect", 7) == 0) {
       if(sscanf(cmd, "connect %d %s %d", &sock, ip_str, &port) != 3){
         printf("Usage: connect SOCKET IP PORT\n");
+        printf("Example: connect 3 192.168.1.1 1234\n");
         continue;
       }
 
@@ -72,6 +73,8 @@ int main(){
     } else if(strncmp(cmd, "bind", 4) == 0) {
       if(sscanf(cmd, "bind %d %s %d", &sock, ip_str, &port) != 3){
         printf("Usage: bind SOCKET IP PORT\n");
+        printf("  use `any` for 0.0.0.0\n");
+        printf("Example: bind 3 any 1234\n");
         continue;
       }
 
@@ -107,6 +110,7 @@ int main(){
     } else if(strncmp(cmd, "listen", 6) == 0) {
       if(sscanf(cmd, "listen %d", &sock) != 1){
         printf("Usage: listen SOCKET\n");
+        printf("Example: listen 3\n");
         continue;
       }
 
@@ -122,6 +126,7 @@ int main(){
     } else if(strncmp(cmd, "accept", 6) == 0) {
       if(sscanf(cmd, "accept %d", &sock) != 1){
         printf("Usage: accept SOCKET\n");
+        printf("Example: accept 3\n");
         continue;
       }
 
@@ -145,6 +150,7 @@ int main(){
     } else if(strncmp(cmd, "send", 4) == 0) {
       if(sscanf(cmd, "send %d %[^\n]", &sock, buf) != 2){
         printf("Usage: send SOCKET STRING\n");
+        printf("Example: send 3 GET /\n");
         continue;
       }
 
@@ -165,6 +171,7 @@ int main(){
     } else if(strncmp(cmd, "recv", 4) == 0) {
       if(sscanf(cmd, "recv %d %d", &sock, &buflen) != 2){
         printf("Usage: recv SOCKET BUFFER-LENGTH\n");
+        printf("Example: recv 3 2000\n");
         continue;
       }
       if(buflen < 0){
@@ -191,6 +198,7 @@ int main(){
     } else if(strncmp(cmd, "close", 5) == 0) {
       if(sscanf(cmd, "close %d", &sock) != 1){
         printf("Usage: close SOCKET\n");
+        printf("Example: close 3\n");
         continue;
       }
 

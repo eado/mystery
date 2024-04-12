@@ -1,25 +1,19 @@
 REQUEST = b"""
 POST /roundtrip HTTP/1.0
 
-While there are no clients for PTHT, there are
-clients for HTTP--an odd protocol that never really took off. 
+When I created an HTML website for a recent project, complete with images, 
+Java Applets, and CSS, one of my colleagues complained about the long load 
+times. He's using Netscape 0.9, which relies on HTTP/1.0, allowing for 13 
+parallel connections. Considering an upgrade to HTTP/1.1 might benefit from 
+pipelined requests.
 
-I decided to give it a try and create an HTML website for a recent project of 
-mine.
-Totally decked out with images, Java Applets, CSS, and the works. 
+Let's assume:
+- Each of the 63 files (HTML + 62 resources) fits in a single packet.
+- Each packet has an average round-trip time of 22 ms.
 
-Unfortunately, one of my colleagues is complaining about how long it takes for
-my website to load. He's currently using Netscape 0.9 that uses HTTP/1.0 (with
-13 max parallel connections). I heard of a recent RFC detailing upcoming 
-HTTP/1.1--which allows for pipelined requests. Maybe that will help?
-
-Suppose my HTML and all my images, etc. (62 total not including HTML) are very 
-small--each fits in a single packet. Don't ask how I know this, but each
-roundtrip time (all delays, on average, to send a packet and receive one back)
-is 22 ms. 
-
-How long, on average, does it take for my colleague to load my website? 
-How long would it be if Netscape used HTTP/1.1 (still with 13 max parallel
+Questions:
+- How long, on average, does it take for my colleague to load my website? 
+- How long would it be if Netscape used HTTP/1.1 (still with 13 max parallel
 connections?)
 
 Add these two answers together and respond with that status code (and its

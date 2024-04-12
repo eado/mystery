@@ -11,7 +11,7 @@ I should start uploading them on my servers. Maybe I'll have less of a request
 for comments.
 
 Hint: Check BruinLearn! The next host should be 3 characters and the port is 4 
-digits."""
+digits. Remember, be persistent."""
 ERR404 = b"""
 HTTP/1.0 404 Not Found
 Content-Type: text/plain
