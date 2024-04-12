@@ -17,8 +17,8 @@
                     val.json().then((val) => {
                         for (var ip in val) {
                             var el = document.getElementById(ip);
+                            var prog = Math.round(val[ip] * 100 / TOTALPROGRESS);
                             if (el) {
-                                var prog = Math.round(val[ip] * 100 / TOTALPROGRESS);
                                 el.getElementsByClassName("bar").item(0).style.width = `${prog * 8 / 10}vw`
                                 el.getElementsByClassName("percent").item(0).innerHTML = `${prog}%`;
                             } else {
