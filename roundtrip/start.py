@@ -5,16 +5,17 @@ When I created an HTML website for a recent project, complete with images,
 Java Applets, and CSS, one of my colleagues complained about the long load 
 times. He's using Netscape 0.9, which relies on HTTP/1.0, allowing for 13 
 parallel connections. Considering an upgrade to HTTP/1.1 might benefit from 
-pipelined requests.
+persistent connections as well.
 
 Let's assume:
 - Each of the 63 files (HTML + 62 resources) fits in a single packet.
 - Each packet has an average round-trip time of 22 ms.
 
 Questions:
-- How long, on average, does it take for my colleague to load my website? 
-- How long would it be if Netscape used HTTP/1.1 (still with 13 max parallel
-connections?)
+- How long, on average, does it take for my colleague to load my website (with
+13 max parallel connections)? 
+- How long would it be if Netscape used HTTP/1.1 (no pipelining; just
+persistence; still with 13 max parallel connections)?
 
 Add these two answers together and respond with that status code (and its
 message...look it up!) Feel free to put whatever you want in the body.
