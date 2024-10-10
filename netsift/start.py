@@ -2,49 +2,35 @@ DATA = b"""
 HTTP/1.0 200 OK
 Content-Type: text/plain
 
-Thanks for getting my notes to my
-house in time. I'll be doing the requesting now.
-Make sure to serve me well...use this answer once more. 
+NETSIFT INTERNAL DOCS
+<REDACTED>
+DATA LINK PROTOCOLS DISCUSSION:
+FRAMING:
+PAGE 20 OF LECTURE NOTES BIT STUFFING
+<REDACTED>
 
-Hint: Create a server that listens on any address at port 6825.
+Hint: Check Tuesday's lecture notes on Bit Stuffing (page 20). 
+The next host you should connect to is a protocol that's 4 characters long.
+The port is the year that this protocol was created. (Check Wikipedia.)
+
 """
 ERR404 = b"""
 HTTP/1.0 404 Not Found
 Content-Type: text/plain
 
-You got lucky last time...you're gonna have to guess where I'm hiding this 
-time. Here's a nice problem for you:
-
-Imagine I wanted to send my lab notes to my wife Mrs. Block at my house. 
-Between my lab computer and my house, there's one router. Hence, there are two
-links. Don't ask how I know this, but the first link from my lab to the router
-has a:
-- propagation delay of 20 ms
-- transmission rate of 5 Mbps
-
-The second link from the router to my house has a:
-- propagation delay of 5 ms
-- transmission rate of 2 Mbps
-
-My notes are 1.5 MB and packets are 500 KB each. 
-
-How long will it take for my notes to arrive at home? You'll be able to find
-the next step to immortality in milliseconds...
-
-Hint: If the answer is 2467 ms, send GET /2467
-"""
-ANSWER = 6825
-ERR400 = b"""HTTP/1.0 400 Bad Request
+Looks like you're searching in the wrong place!"""
+ERR400 = b"""
+HTTP/1.0 400 Bad Request
 Content-Type: text/plain
 
 Sorry, I've got no idea what you're trying to tell me."""
 
 PANY = "^GET( | $|$)[/A-Za-z0-9\\-\\._~!\\$&'\\(\\)\\*\\+,;=:@%]*\\s*(\\s+HTTP|\\s+HTTP/1.0)?\\s*$"
-PEXACT = "^GET /+{}/*\\s*(\\s+HTTP|\\s+HTTP/1.0)?\\s*$".format(ANSWER)
+PEXACT = "^GET( | $|$)/*\\s*(\\s+HTTP|\\s+HTTP/1.0)?\\s*$"
 
 HOST = "0.0.0.0"
-PORT = 2616
-PROGRESS = 20
+PORT = 2005
+PROGRESS = 10
 
 from http.client import HTTPConnection
 from socket import socket, AF_INET, SOCK_STREAM

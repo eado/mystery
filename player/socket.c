@@ -20,7 +20,7 @@ int main(){
 
   setbuf(stdout, NULL);
 
-  printf("INTERNAL BLOCK TOOLCHAIN. Type help for available commands.\n");
+  printf("INTERNAL NETSIFT TOOLCHAIN. Type help for available commands.\n");
 
   for(printf("> "); fgets(cmd, sizeof(cmd), stdin) != NULL; printf("> ")){
     if(strncmp(cmd, "exit", 4) == 0){
