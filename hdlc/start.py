@@ -12,14 +12,13 @@ HTTP/1.0 404 Not Found
 Content-Type: text/plain
 
 NETSIFT INTERVIEW PROBLEM (CONFIDENTIAL):
-Here's a sequence of bits from an HDLC connection:
-110011 1110011 110011 000111
+Here's a sequence of bits from a (modified) HDLC connection (beginning/end stripped):
+00110011 001101110 00110011 001110000
 
 From left to right, these bits form an ASCII string.
-Each grouping of bits is a character with its *least significant bit* first. 
 
-HDLC uses bit stuffing with a sentinel pattern 01111110.
-Any time it sees a sequence of 5 1s in a row, it inserts a 0.
+HDLC uses bit stuffing with a sentinel pattern 011110.
+Any time it sees a sequence of 3 1s in a row, it inserts a 0.
 Your job is to "unstuff" these bits.
 
 Hint: If the answer is 2467, send GET /2467
