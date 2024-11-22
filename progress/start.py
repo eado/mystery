@@ -35,10 +35,7 @@ def run2():
                 self.send_error(HTTPStatus.NOT_FOUND)
             else:
                 try:
-                    if parts[1] not in progress:
-                        progress[parts[1]] = int(parts[2])
-                    elif progress[parts[1]] < int(parts[2]):
-                        progress[parts[1]] = int(parts[2])
+                    progress[parts[1]] = int(parts[2])
 
                     self.send_response(HTTPStatus.OK)
                     self.end_headers()

@@ -20,10 +20,8 @@ docker network rm `docker network ls -q`
 sed -i '' "s/^NUMSERVERS = .*/NUMSERVERS = $n/" roundtrip/start.py
 
 # Build images
-docker build -t player player
-docker build -t netsift netsift
-docker build -t hdlc hdlc
-docker build -t roundtrip roundtrip
+docker build -t player -f player/Dockerfile .
+docker build -t roundtrip -f roundtrip/Dockerfile .
 docker build -t progress progress
 
 # Create network
@@ -36,9 +34,6 @@ for i in $(seq 0 $n); do
 done
 
 # Run servers
-docker run -h netsift --name netsift --net iso --ip 10.0.124.247 -td netsift
-docker run -h hdlc --name hdlc --net iso --ip 10.0.78.200 -td hdlc
 docker run -h roundtrip --name roundtrip --net iso --ip 10.0.213.12 -td roundtrip
-
 docker run -h progress --name progress --net iso --ip 10.0.0.2 -p "80:8080" -td progress
 
